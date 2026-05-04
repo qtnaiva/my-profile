@@ -25,6 +25,7 @@ html {
 body {
     background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
     color: #333;
+	font-size: 14px;
 }
 
 
@@ -55,8 +56,9 @@ header {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
                 url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
     background-size: cover;
-    background-position: center;
-    height: 100vh;
+    background-position: center;body {
+    height: 80vh;
+    padding: 20px;
     color: white;
     display: flex;
     align-items: center;
@@ -178,7 +180,7 @@ section {
 /* CARD UMUM */
 .card {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     margin-top: 15px;
@@ -193,7 +195,7 @@ section {
 
 .project-card {
     flex: 1;
-    min-width: 250px;
+    min-width: 100%;
 }
 
 /* CONTACT */
@@ -233,9 +235,11 @@ footer {
         font-size: 28px;
     }
 
-    nav {
-        padding: 10px;
-    }
+   nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
     nav a {
         display: inline-block;
@@ -274,6 +278,14 @@ footer {
         padding: 20px;
     }
 }
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
 
 </style>
 </head>
