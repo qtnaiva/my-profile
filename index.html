@@ -1,0 +1,458 @@
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Quratul Naiva</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
+    color: #333;
+}
+
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.5);
+    padding: 15px;
+    text-align: center;
+    z-index: 100;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #ffd369;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 48px;
+}
+
+/* SECTION */
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* ABOUT */
+.about {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Layout About Me */
+.about-minimal h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #667eea;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Info list */
+.personal-info {
+    list-style: none;
+    padding: 0;
+}
+
+.personal-info li {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.personal-info li ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px; /* sedikit lebih luas */
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 130px;  /* naik dari 100px */
+    height: 130px; /* naik dari 100px */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #667eea;
+}
+
+/* SKILLS */
+.skills p {
+    margin-top: 15px;
+}
+
+.bar {
+    background: #ddd;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+/* CARD UMUM */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-top: 15px;
+}
+
+/* PROJECT */
+.projects {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* CONTACT */
+.contact {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.contact button {
+    padding: 12px 25px;
+    border: none;
+    background: #667eea;
+    color: white;
+    border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#project">Project</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<header>
+    <div>
+        <h1>Hi, Saya Quratul Naiva</h1>
+        <p>Mahasiswa Teknik Informatika</p>
+    </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container about-minimal">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="foto.jpg" alt="Foto Quratul Naiva" class="avatar">
+            <div class="about-text">
+                <p>
+                    Saya adalah mahasiswa Teknik Informatika yang sedang belajar pengembangan web.
+                    Saat ini mempelajari HTML, CSS, PHP, dan MySQL. Saya juga terus mengembangkan kemampuan
+                    problem solving dan ingin membuat project yang bermanfaat di bidang IT.
+                </p>
+
+                <ul class="personal-info">
+                    <li><strong>Tahun Lahir:</strong> 2006</li>
+                    <li><strong>Status:</strong> Mahasiswa</li>
+                    <li><strong>Kota Asal:</strong> Pidie, Aceh</li>
+                    <li><strong>Pendidikan:</strong>
+                        <ul>
+                            <li>S1 Teknik Informatika - Universitas Jabal Ghafur (2024 - Sekarang)</li>
+                            <li>SMA - SMAN 1 Peukan Baro (2021 - 2024)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SKILLS -->
+<!-- Tambahkan ini di <head> untuk Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <h2>My Skills</h2>
+
+        <div class="skills">
+            <p><i class="fab fa-html5"></i> HTML</p>
+            <div class="bar"><span style="width:95%"></span></div>
+
+            <p><i class="fab fa-css3-alt"></i> CSS</p>
+            <div class="bar"><span style="width:75%"></span></div>
+
+            <p><i class="fab fa-php"></i> PHP</p>
+            <div class="bar"><span style="width:90%"></span></div>
+
+            <p><i class="fas fa-database"></i> Database (MySQL)</p>
+            <div class="bar"><span style="width:70%"></span></div>
+			
+			<p><i class="fas fa-users"></i> Kepemimpinan</p>
+		<div class="bar"><span style="width:85%"></span></div>
+
+<p><i class="fab fa-js"></i> JavaScript</p>
+<div class="bar"><span style="width:75%"></span></div>
+
+            <p><i class="fas fa-lightbulb"></i> Problem Solving</p>
+            <div class="bar"><span style="width:90%"></span></div>
+
+            <p><i class="fas fa-file-word"></i> Microsoft Word</p>
+            <div class="bar"><span style="width:97%"></span></div>
+
+
+            <p><i class="fas fa-chart-line"></i> Microsoft PowerPoint</p>
+            <div class="bar"><span style="width:80%"></span></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- PROJECT -->
+<section id="project">
+    <div class="container">
+        <h2>My Projects</h2>
+
+        <div class="projects">
+			<div class="card project-card">
+    <h3>REKOMEDIA</h3>
+
+    <p>
+        Website rekomendasi media (drama, film, atau konten hiburan) yang dibuat untuk membantu pengguna menemukan tontonan berdasarkan kategori tertentu.
+    </p>
+
+    <p><strong>Teknologi:</strong> HTML, CSS, PHP</p>
+
+    <p><strong>Fitur:</strong></p>
+    <ul>
+        <li>Rekomendasi konten berdasarkan kategori</li>
+        <li>Tampilan daftar media</li>
+        <li>Link trailer atau sumber eksternal</li>
+    </ul>
+
+    <p><strong>Status:</strong> Dalam pengembangan</p>
+
+    <a href="https://qtnaiva.github.io/rekomedia-web-nn/" target="_blank"
+       style="display:inline-block; margin-top:10px; padding:8px 15px;
+       background:#333; color:#fff; border-radius:8px; text-decoration:none;">
+       <i class="fab fa-github"></i> View on GitHub
+    </a>
+</div>
+
+			<div class="card project-card">
+    <h3>QUIZ GAME</h3>
+
+    <p>
+        Aplikasi game kuis berbasis web yang berisi pertanyaan pilihan ganda dengan sistem skor otomatis untuk menguji pengetahuan pengguna.
+    </p>
+
+    <p><strong>Teknologi:</strong> HTML, CSS, JavaScript</p>
+
+    <p><strong>Fitur:</strong></p>
+    <ul>
+        <li>Pertanyaan pilihan ganda</li>
+        <li>Skor otomatis</li>
+        <li>Feedback benar/salah</li>
+        <li>Interaktif dan mudah digunakan</li>
+    </ul>
+
+    <p><strong>Status:</strong> Selesai</p>
+
+    <a href="https://qtnaiva.github.io/quiz-zone/" target="_blank"
+       style="display:inline-block; margin-top:10px; padding:8px 15px;
+       background:#333; color:#fff; border-radius:8px; text-decoration:none;">
+       <i class="fab fa-github"></i> View on GitHub
+    </a>
+	</div>
+   </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="container">
+        <h2>Experience</h2>
+
+        <!-- KAMPUS -->
+        <div class="card">
+            <h3>Mahasiswa Teknik Informatika</h3>
+            <p>
+                Aktif menjalani perkuliahan dan fokus dalam pengembangan kemampuan di bidang web development.
+                Mempelajari HTML, CSS, PHP, dan MySQL serta mengerjakan berbagai tugas dan project berbasis web.
+            </p>
+        </div>
+
+        <!-- SMA -->
+        <div class="card">
+            <h3>Wakil Ketua OSIS</h3>
+            <p>
+                Menjabat sebagai Wakil Ketua OSIS periode 2021/2022.
+                Bertanggung jawab dalam membantu koordinasi kegiatan sekolah serta mengembangkan kemampuan kepemimpinan dan kerja sama tim.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Ketua Mading Sekolah</h3>
+            <p>
+                Memimpin tim dalam pengelolaan majalah dinding sekolah pada tahun 2022/2023.
+                Bertanggung jawab dalam penyusunan konten dan meningkatkan kreativitas tim.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Ketua Rohani Islam (ROHIS)</h3>
+            <p>
+                Menjabat sebagai Ketua ROHIS periode 2023/2024.
+                Mengelola kegiatan keagamaan serta mengembangkan kemampuan organisasi dan komunikasi.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Prestasi Akademik</h3>
+            <p>
+                Meraih Juara Umum pada kelas 2 SMA sebagai bentuk konsistensi dalam prestasi akademik.
+            </p>
+        </div>
+		<div class="card">
+    <h3>Master of Ceremony (MC) di lingkungan sekolah</h3>
+    <p>
+        Menjadi MC selama 3 tahun berturut-turut pada berbagai acara sekolah saat SMA.
+        Berperan dalam memandu acara serta mengembangkan kemampuan public speaking.
+        Pernah menggunakan Bahasa Indonesia dan Bahasa Inggris dalam beberapa acara.
+    </p>
+</div>
+
+
+</div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container contact">
+        <h2>Contact Me</h2>
+
+        <div class="contact-info" style="margin-top:20px; font-size:18px;">
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:quratulnayva@gmail.com">quratulnayva@gmail.com</a></p>
+            <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></p>
+            <p><i class="fab fa-instagram"></i> Instagram: <a href="https://instagram.com/qtnaiva" target="_blank">@qtnaiva</a></p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Quratul Naiva</p>
+</footer>
+
+</body>
+</html>
