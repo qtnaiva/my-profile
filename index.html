@@ -1,553 +1,1203 @@
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile Quratul Naiva</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+<title>Quratul Naiva — Portfolio</title>
+ 
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+ 
 <style>
-html {
-    scroll-behavior: smooth;
+:root{
+    --bg: #060810;
+    --bg-soft: #0c1020;
+    --surface: #11162a;
+    --surface-2: #161d36;
+    --border: #232b4a;
+    --text: #e7ecfc;
+    --text-dim: #8b94bd;
+ 
+    --c1: #7c5cff;   /* violet */
+    --c2: #00e7c3;   /* teal */
+    --c3: #ff6ec7;   /* pink */
+    --c4: #ffb454;   /* amber */
+ 
+    --grad: linear-gradient(120deg, var(--c1), var(--c2));
+    --grad2: linear-gradient(120deg, var(--c3), var(--c1));
+    --grad-text: linear-gradient(120deg, var(--c2), var(--c1) 50%, var(--c3));
+ 
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --sans: 'Inter', sans-serif;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background: linear-gradient(135deg, #f2f2f2, #e6e6e6);
-    color: #333;
+ 
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+ 
+body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
     font-size: 16px;
+    line-height: 1.7;
     padding-top: 70px;
+    overflow-x: hidden;
+    position: relative;
 }
-
-
-
-/* NAVBAR */
-nav {
+ 
+/* ambient glow background */
+body::before, body::after{
+    content:'';
     position: fixed;
-    width: 100%;
-    backdrop-filter: blur(10px);
-    background: rgba(0,0,0,0.5);
-    padding: 15px;
-    text-align: center;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .25;
+    z-index: -1;
+    pointer-events: none;
+}
+body::before{
+    width: 500px; height: 500px;
+    background: var(--c1);
+    top: -150px; left: -150px;
+    animation: float1 18s ease-in-out infinite;
+}
+body::after{
+    width: 600px; height: 600px;
+    background: var(--c2);
+    bottom: -200px; right: -200px;
+    animation: float2 22s ease-in-out infinite;
+}
+@keyframes float1{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(80px,60px) scale(1.2); }
+}
+@keyframes float2{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(-60px,-80px) scale(1.15); }
+}
+ 
+::selection{ background: var(--c2); color: var(--bg); }
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background: var(--bg); }
+::-webkit-scrollbar-thumb{ background: var(--surface-2); border-radius:10px; }
+ 
+/* ============ NAV ============ */
+nav{
+    position: fixed;
+    top:0; left:0; right:0;
+    background: rgba(6,8,16,0.65);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     z-index: 100;
 }
-
-nav a {
-    color: white;
-    margin: 0 15px;
+ 
+.nav-logo{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+.nav-logo .dot{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    background: var(--grad);
+    margin-right:8px;
+    box-shadow: 0 0 12px var(--c2);
+    animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.5; transform:scale(1.4);} }
+ 
+.nav-links{ display:flex; gap: 30px; flex-wrap: wrap; }
+ 
+nav a{
+    color: var(--text-dim);
     text-decoration: none;
+    font-family: var(--mono);
+    font-size: 13px;
     font-weight: 500;
+    transition: color .25s ease;
+    position: relative;
+    padding-bottom: 4px;
 }
-
-nav a:hover {
-    color: #ffd369;
+nav a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height:2px;
+    background: var(--grad);
+    transition: width .3s ease;
+    border-radius: 2px;
 }
-header {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
-    background-size: cover;
-    background-position: center;
-    height: 80vh;
-    padding: 20px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+nav a:hover{ color: var(--text); }
+nav a:hover::after{ width:100%; }
+ 
+/* ============ HERO ============ */
+header{
+    min-height: calc(100vh - 70px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 60px 24px;
+    position: relative;
+}
+ 
+.hero-wrap{
+    max-width: 920px;
+    width:100%;
     text-align: center;
+    position: relative;
+    z-index:1;
 }
-
-
-header h1 {
-    font-size: 48px;
+ 
+.hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--c2);
+    background: rgba(0,231,195,0.08);
+    border: 1px solid rgba(0,231,195,0.25);
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-bottom: 28px;
 }
-
-/* SECTION */
-section {
-    padding: 100px 20px;
+.hero-eyebrow .pulse-dot{
+    width:8px; height:8px; border-radius:50%;
+    background: var(--c2);
+    box-shadow: 0 0 0 0 rgba(0,231,195,0.6);
+    animation: ripple 2s infinite;
 }
-
-.container {
-    max-width: 1000px;
-    margin: auto;
+@keyframes ripple{
+    0%{ box-shadow: 0 0 0 0 rgba(0,231,195,0.6); }
+    70%{ box-shadow: 0 0 0 8px rgba(0,231,195,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(0,231,195,0); }
 }
-
-/* ABOUT */
-.about {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    flex-wrap: wrap;
+ 
+.hero-title{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(40px, 9vw, 92px);
+    line-height: 1.05;
+    margin-bottom: 22px;
+    letter-spacing: -1px;
 }
-
-.about img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
+.hero-title .grad-text{
+    background: var(--grad-text);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradShift 6s ease infinite;
 }
-
-/* Layout About Me */
-.about-minimal h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
+@keyframes gradShift{
+    0%,100%{ background-position: 0% center; }
+    50%{ background-position: 100% center; }
 }
-
-.about-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
+ 
+.hero-role{
+    font-family: var(--mono);
+    font-size: clamp(15px, 2.5vw, 19px);
+    color: var(--text-dim);
+    margin-bottom: 36px;
+    min-height: 28px;
 }
-
-.avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #667eea;
+.hero-role .cursor{
+    display:inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--c2);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 0.9s step-end infinite;
 }
-
-.about-text {
-    flex: 1;
+@keyframes blink{ 50%{ opacity:0; } }
+ 
+.hero-tags{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom: 40px; }
+.tag{
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 16px;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--text-dim);
+    background: var(--surface);
+    transition: all .25s ease;
+    cursor: default;
 }
-
-.about-text p {
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 15px;
+.tag:hover{
+    border-color: transparent;
+    color: var(--bg);
+    background: var(--grad);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px -8px var(--c1);
 }
-
-/* Info list */
-.personal-info {
-    list-style: none;
-    padding: 0;
-}
-
-.personal-info li {
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.personal-info li ul {
-    list-style: disc;
-    margin-left: 20px;
-    margin-top: 5px;
-}
-.about-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 25px; /* sedikit lebih luas */
-    flex-wrap: wrap;
-}
-
-.avatar {
-    width: 130px;  /* naik dari 100px */
-    height: 130px; /* naik dari 100px */
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #667eea;
-}
-
-/* SKILLS */
-.skills p {
-    margin-top: 15px;
-}
-
-.bar {
-    background: #ddd;
-    height: 10px;
-    border-radius: 10px;
+ 
+.hero-cta{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+.btn{
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    border: 1px solid transparent;
+    position: relative;
     overflow: hidden;
 }
-
-.bar span {
-    display: block;
-    height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+.btn-primary{
+    background: var(--grad);
+    color: #04101a;
+    font-weight: 700;
 }
-
-/* CARD UMUM */
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    margin-top: 15px;
+.btn-primary:hover{ transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 30px -10px var(--c2); }
+.btn-outline{ border-color: var(--border); color: var(--text); background: var(--surface); }
+.btn-outline:hover{ transform: translateY(-3px); border-color: var(--c3); color: var(--c3); }
+ 
+.scroll-hint{
+    position:absolute;
+    bottom: 30px;
+    left:50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 8px;
+    animation: bob 2.5s ease-in-out infinite;
 }
-
-/* PROJECT */
-.projects {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+@keyframes bob{ 0%,100%{ transform: translate(-50%,0); } 50%{ transform: translate(-50%,8px); } }
+ 
+/* ============ SECTIONS ============ */
+section{ padding: 100px 24px; position: relative; }
+.container{ max-width: 980px; margin: auto; }
+ 
+.section-tag{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--c2);
+    margin-bottom: 10px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
-
-.project-card {
-    flex: 1;
-    min-width: 250px;
+.section-tag::before{ content:''; width:24px; height:2px; background: var(--grad); border-radius:2px; }
+ 
+.section-title{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 46px);
+    margin-bottom: 56px;
+    letter-spacing: -0.5px;
 }
-
-
-/* CONTACT */
-.contact {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
+ 
+/* ============ ABOUT ============ */
+.about-grid{
+    display:grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+    align-items: start;
 }
-
-.contact input, .contact textarea {
+ 
+.avatar-wrap{ position: relative; }
+.avatar-glow{
+    position: absolute;
+    inset: -10px;
+    background: var(--grad);
+    border-radius: 24px;
+    opacity: 0.5;
+    filter: blur(20px);
+    z-index: 0;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse{ 0%,100%{ opacity:0.35; } 50%{ opacity:0.6; } }
+.avatar{
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    display:block;
 }
-
-.contact button {
-    padding: 12px 25px;
-    border: none;
-    background: #667eea;
-    color: white;
-    border-radius: 10px;
+.avatar-tag{
+    position:absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--c2);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 30px;
+    white-space:nowrap;
+    z-index: 2;
 }
-
-/* FOOTER */
-footer {
+ 
+.about-text p{ color: var(--text-dim); margin-bottom: 18px; font-size: 16px; }
+.about-text strong{
+    color: var(--text);
+    background: linear-gradient(120deg, rgba(124,92,255,0.2), rgba(0,231,195,0.2));
+    padding: 1px 6px;
+    border-radius: 6px;
+}
+ 
+.info-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+}
+.info-item{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    transition: transform .2s ease, border-color .2s ease;
+}
+.info-item:hover{ transform: translateY(-3px); border-color: var(--c1); }
+.info-item .k{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--c2);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+.info-item .v{ font-size: 14px; color: var(--text); font-weight:500; }
+.info-item .v small{ color: var(--text-dim); display:block; font-size:12px; margin-top:3px; font-weight:400; }
+ 
+/* ============ SKILLS ============ */
+.skills-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+}
+.skill-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    position: relative;
+    overflow: hidden;
+}
+.skill-card::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0; height:3px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+}
+.skill-card:hover{ transform: translateY(-5px); border-color: var(--c1); box-shadow: 0 16px 40px -20px var(--c1); }
+.skill-card:hover::before{ transform: scaleX(1); }
+ 
+.skill-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 14px;
+}
+.skill-head .name{
+    display:flex; align-items:center; gap:12px;
+    font-weight:600; font-size: 15px;
+    font-family: var(--display);
+}
+.skill-head .name .icn{
+    width: 36px; height:36px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+    color: var(--c2);
+}
+.skill-head .pct{ font-family: var(--mono); font-size: 13px; color: var(--text-dim); font-weight:600; }
+ 
+.bar{ background: var(--bg-soft); height: 8px; border-radius: 10px; overflow: hidden; }
+.bar span{
+    display:block; height:100%;
+    background: var(--grad);
+    border-radius: 10px;
+    transform-origin: left;
+    box-shadow: 0 0 12px rgba(0,231,195,0.5);
+}
+ 
+/* ============ PROJECTS ============ */
+.projects-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 26px;
+}
+ 
+.project-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    position: relative;
+}
+.project-card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: var(--grad2);
+    opacity:0;
+    transition: opacity .3s ease;
+    z-index:0;
+    pointer-events:none;
+    mix-blend-mode: overlay;
+}
+.project-card:hover{ transform: translateY(-6px); border-color: var(--c3); box-shadow: 0 20px 50px -25px var(--c1); }
+.project-card:hover::after{ opacity: 0.06; }
+ 
+.project-head{
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background: var(--surface-2);
+    position: relative; z-index:1;
+}
+.project-head h3{
+    font-family: var(--display);
+    font-weight:700;
+    font-size: 18px;
+    color: var(--text);
+    display:flex; align-items:center; gap:12px;
+}
+.project-head h3 i{
+    color: var(--bg);
+    background: var(--grad);
+    width: 36px; height:36px;
+    border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 15px;
+}
+ 
+.status-pill{
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.status-pill.done{ background: rgba(0,231,195,0.12); color: var(--c2); border:1px solid rgba(0,231,195,0.3); }
+.status-pill.progress{ background: rgba(255,180,84,0.12); color: var(--c4); border:1px solid rgba(255,180,84,0.3); }
+ 
+.project-body{ padding: 22px 24px; flex:1; display:flex; flex-direction:column; position:relative; z-index:1; }
+.project-body p{ color: var(--text-dim); font-size: 14.5px; margin-bottom: 16px; }
+.project-body .label{ font-family: var(--mono); font-size: 11px; color: var(--c2); text-transform:uppercase; letter-spacing:1.5px; margin-bottom: 8px; }
+ 
+.tech-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 18px; }
+.tech-row span{
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 11px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-dim);
+}
+ 
+.feature-list{ list-style:none; margin-bottom: 20px; }
+.feature-list li{
+    font-size: 13.5px;
+    color: var(--text-dim);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 7px;
+}
+.feature-list li::before{
+    content:'';
+    position:absolute; left:0; top:7px;
+    width:8px; height:8px;
+    border-radius: 2px;
+    background: var(--grad);
+}
+ 
+.project-link{
+    margin-top: auto;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    transition: all .25s ease;
+    align-self: flex-start;
+}
+.project-link:hover{ background: var(--grad); color: var(--bg); border-color: transparent; transform: translateX(4px); }
+ 
+/* ============ EXPERIENCE ============ */
+.timeline{
+    position: relative;
+    padding-left: 40px;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left: 11px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--c1), var(--c2), var(--c3));
+}
+.tl-item{ position: relative; margin-bottom: 40px; }
+.tl-item:last-child{ margin-bottom: 0; }
+.tl-item::before{
+    content:'';
+    position: absolute;
+    left: -40px;
+    top: 4px;
+    width: 16px; height:16px;
+    background: var(--bg);
+    border: 3px solid var(--c2);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg), 0 0 16px rgba(0,231,195,0.5);
+    transition: border-color .3s ease;
+}
+.tl-item:hover::before{ border-color: var(--c3); box-shadow: 0 0 0 4px var(--bg), 0 0 20px rgba(255,110,199,0.6); }
+ 
+.tl-item h3{
+    font-family: var(--display);
+    font-weight:700;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+.tl-item .tl-tag{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--c4);
+    margin-bottom: 8px;
+    display:inline-block;
+    background: rgba(255,180,84,0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,180,84,0.25);
+}
+.tl-item p{ color: var(--text-dim); font-size: 14.5px; margin-top: 8px; }
+ 
+/* ============ CONTACT ============ */
+.contact-box{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 56px 40px;
     text-align: center;
-    padding: 20px;
-    background: #111;
-    color: white;
+    position: relative;
+    overflow: hidden;
 }
-/* RESPONSIVE HP */
-@media (max-width: 768px) {
-
-    body {
-        font-size: 14px;
-    }
-
-    header {
-        height: 80vh;
-        padding: 20px;
-    }
-
-    header h1 {
-        font-size: 28px;
-    }
-
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-    }
-
-    nav a {
-        font-size: 12px;
-        padding: 5px 8px;
-    }
-
-    section {
-        padding: 70px 15px;
-    }
-
-    .about-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-
-    .projects {
-        flex-direction: column;
-    }
-
-    .project-card {
-        width: 100%;
-    }
-
-    .contact {
-        padding: 20px;
-    }
+.contact-box::before{
+    content:'';
+    position:absolute;
+    width: 400px; height:400px;
+    background: var(--grad);
+    opacity: 0.08;
+    border-radius: 50%;
+    top: -200px; right: -150px;
+    filter: blur(60px);
 }
-
-
-
+.contact-box .section-tag{ justify-content:center; }
+.contact-box .section-tag::before{ display:none; }
+.contact-box h2{
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(26px, 4.5vw, 40px);
+    margin-bottom: 14px;
+    position: relative; z-index:1;
+}
+.contact-box > p{ color: var(--text-dim); margin-bottom: 36px; max-width: 480px; margin-left:auto; margin-right:auto; position: relative; z-index:1; }
+ 
+.contact-links{
+    display:flex;
+    justify-content:center;
+    gap: 18px;
+    flex-wrap: wrap;
+    position: relative; z-index:1;
+}
+.contact-link{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    padding: 24px 30px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration:none;
+    color: var(--text);
+    transition: all .25s ease;
+    min-width: 150px;
+}
+.contact-link:hover{
+    border-color: transparent;
+    transform: translateY(-5px);
+    background: var(--grad);
+    color: var(--bg);
+    box-shadow: 0 16px 40px -15px var(--c1);
+}
+.contact-link i{ font-size: 26px; color: var(--c2); transition: color .25s ease; }
+.contact-link:hover i{ color: var(--bg); }
+.contact-link span{ font-family: var(--mono); font-size: 13px; font-weight: 700; }
+.contact-link small{ color: var(--text-dim); font-size: 11px; transition: color .25s ease; }
+.contact-link:hover small{ color: rgba(6,8,16,0.7); }
+ 
+/* ============ FOOTER ============ */
+footer{
+    text-align:center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 12px;
+}
+footer .hl{
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+ 
+/* ============ ANIMATIONS ============ */
+.fade-up{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s cubic-bezier(.25,.8,.25,1), transform .7s cubic-bezier(.25,.8,.25,1);
+}
+.fade-up.visible{ opacity:1; transform: translateY(0); }
+ 
+.stagger > *{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .5s ease, transform .5s ease;
+}
+.stagger.visible > *{ opacity:1; transform: translateY(0); }
+.stagger.visible > *:nth-child(1){ transition-delay: 0.05s; }
+.stagger.visible > *:nth-child(2){ transition-delay: 0.1s; }
+.stagger.visible > *:nth-child(3){ transition-delay: 0.15s; }
+.stagger.visible > *:nth-child(4){ transition-delay: 0.2s; }
+.stagger.visible > *:nth-child(5){ transition-delay: 0.25s; }
+.stagger.visible > *:nth-child(6){ transition-delay: 0.3s; }
+.stagger.visible > *:nth-child(7){ transition-delay: 0.35s; }
+.stagger.visible > *:nth-child(8){ transition-delay: 0.4s; }
+.stagger.visible > *:nth-child(9){ transition-delay: 0.45s; }
+ 
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px){
+    body{ padding-top: 60px; }
+    nav{ padding: 12px 16px; flex-direction: column; gap: 10px; }
+    .nav-links{ gap: 14px; justify-content:center; }
+    nav a{ font-size: 11px; }
+ 
+    header{ min-height: calc(100vh - 96px); padding: 40px 16px; }
+    .hero-cta{ flex-direction: column; align-items: center; }
+    .btn{ width: 100%; max-width: 280px; justify-content:center; }
+ 
+    section{ padding: 70px 16px; }
+ 
+    .about-grid{ grid-template-columns: 1fr; }
+    .avatar-wrap{ max-width: 200px; margin: 0 auto 24px; }
+    .info-grid{ grid-template-columns: 1fr; }
+ 
+    .projects-grid{ grid-template-columns: 1fr; }
+    .timeline{ padding-left: 30px; }
+    .tl-item::before{ left: -30px; }
+ 
+    .contact-box{ padding: 36px 22px; }
+    .contact-links{ gap: 12px; }
+    .contact-link{ min-width: 110px; padding: 18px 20px; }
+ 
+    body::before, body::after{ width: 300px; height: 300px; }
+}
+ 
+@media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+    .fade-up, .stagger > *{ opacity:1; transform:none; }
+}
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <nav>
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#project">Project</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+    <div class="nav-logo"><span class="dot"></span>qtnaiva</div>
+    <div class="nav-links">
+        <a href="#about">about</a>
+        <a href="#skills">skills</a>
+        <a href="#project">projects</a>
+        <a href="#experience">experience</a>
+        <a href="#contact">contact</a>
+    </div>
 </nav>
-
+ 
+<!-- HERO -->
 <header>
-    <div>
-        <h1>Hi, Saya Quratul Naiva</h1>
-        <p>Mahasiswa Teknik Informatika</p>
+    <div class="hero-wrap">
+        <div class="hero-eyebrow"><span class="pulse-dot"></span> Open to collaboration &amp; new projects</div>
+ 
+        <h1 class="hero-title">
+            Hi, I'm<br><span class="grad-text">Quratul Naiva</span>
+        </h1>
+ 
+        <div class="hero-role">
+            <span id="typed-text"></span><span class="cursor"></span>
+        </div>
+ 
+        <div class="hero-tags">
+            <span class="tag"><i class="fab fa-html5"></i> HTML</span>
+            <span class="tag"><i class="fab fa-css3-alt"></i> CSS</span>
+            <span class="tag"><i class="fab fa-php"></i> PHP</span>
+            <span class="tag"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="tag"><i class="fas fa-database"></i> MySQL</span>
+        </div>
+ 
+        <div class="hero-cta">
+            <a href="#project" class="btn btn-primary"><i class="fas fa-rocket"></i> Lihat Project</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Hubungi Saya</a>
+        </div>
+    </div>
+ 
+    <div class="scroll-hint">
+        <span>scroll</span>
+        <i class="fas fa-chevron-down"></i>
     </div>
 </header>
-
+ 
 <!-- ABOUT -->
 <section id="about">
-    <div class="container about-minimal">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <img src="foto.jpg" alt="Foto Quratul Naiva" class="avatar">
+    <div class="container fade-up">
+        <div class="section-tag">tentang</div>
+        <h2 class="section-title">About Me</h2>
+ 
+        <div class="about-grid">
+            <div class="avatar-wrap">
+                <div class="avatar-glow"></div>
+                <img src="foto.jpg" alt="Foto Quratul Naiva" class="avatar">
+                <div class="avatar-tag">&lt;Naiva /&gt;</div>
+            </div>
             <div class="about-text">
                 <p>
-                    Saya adalah mahasiswa Teknik Informatika yang sedang belajar pengembangan web.
-                    Saat ini mempelajari HTML, CSS, PHP, dan MySQL. Saya juga terus mengembangkan kemampuan
-                    problem solving dan ingin membuat project yang bermanfaat di bidang IT.
+                    Saya adalah <strong>mahasiswa Teknik Informatika</strong> yang sedang menekuni pengembangan web.
+                    Saat ini fokus mendalami <strong>HTML, CSS, PHP, JavaScript, dan MySQL</strong>, sambil terus
+                    melatih kemampuan problem solving untuk membangun project yang bermanfaat di bidang IT.
                 </p>
-
-                <ul class="personal-info">
-                    <li><strong>Tahun Lahir:</strong> 2006</li>
-                    <li><strong>Status:</strong> Mahasiswa</li>
-                    <li><strong>Kota Asal:</strong> Pidie, Aceh</li>
-                    <li><strong>Pendidikan:</strong>
-                        <ul>
-                            <li>S1 Teknik Informatika - Universitas Jabal Ghafur (2024 - Sekarang)</li>
-                            <li>SMA - SMAN 1 Peukan Baro (2021 - 2024)</li>
-                        </ul>
-                    </li>
-                </ul>
+                <p>
+                    Selain coding, saya juga aktif berorganisasi dan terbiasa memimpin tim — pengalaman ini
+                    membentuk cara saya bekerja: terstruktur, komunikatif, dan terbuka untuk belajar hal baru.
+                </p>
+ 
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="k">Tahun Lahir</div>
+                        <div class="v">2006</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="k">Status</div>
+                        <div class="v">Mahasiswa Aktif</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="k">Asal</div>
+                        <div class="v">Pidie, Aceh</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="k">Fokus</div>
+                        <div class="v">Web Development</div>
+                    </div>
+                    <div class="info-item" style="grid-column: span 2;">
+                        <div class="k">Pendidikan</div>
+                        <div class="v">S1 Teknik Informatika — Universitas Jabal Ghafur
+                            <small>2024 – Sekarang</small>
+                        </div>
+                        <div class="v" style="margin-top:10px;">SMAN 1 Peukan Baro
+                            <small>2021 – 2024</small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<!-- SKILLS -->
-<!-- Tambahkan ini di <head> untuk Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+ 
 <!-- SKILLS -->
 <section id="skills">
-    <div class="container">
-        <h2>My Skills</h2>
-
-        <div class="skills">
-            <p><i class="fab fa-html5"></i> HTML</p>
-            <div class="bar"><span style="width:95%"></span></div>
-
-            <p><i class="fab fa-css3-alt"></i> CSS</p>
-            <div class="bar"><span style="width:75%"></span></div>
-
-            <p><i class="fab fa-php"></i> PHP</p>
-            <div class="bar"><span style="width:90%"></span></div>
-
-            <p><i class="fas fa-database"></i> Database (MySQL)</p>
-            <div class="bar"><span style="width:70%"></span></div>
-			
-			<p><i class="fas fa-users"></i> Kepemimpinan</p>
-		<div class="bar"><span style="width:85%"></span></div>
-
-<p><i class="fab fa-js"></i> JavaScript</p>
-<div class="bar"><span style="width:75%"></span></div>
-
-            <p><i class="fas fa-lightbulb"></i> Problem Solving</p>
-            <div class="bar"><span style="width:90%"></span></div>
-
-            <p><i class="fas fa-file-word"></i> Microsoft Word</p>
-            <div class="bar"><span style="width:97%"></span></div>
-
-
-            <p><i class="fas fa-chart-line"></i> Microsoft PowerPoint</p>
-            <div class="bar"><span style="width:80%"></span></div>
+    <div class="container fade-up">
+        <div class="section-tag">kemampuan</div>
+        <h2 class="section-title">My Skills</h2>
+ 
+        <div class="skills-grid stagger">
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fab fa-html5"></i></span> HTML</span>
+                    <span class="pct">95%</span>
+                </div>
+                <div class="bar"><span style="width:95%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fab fa-css3-alt"></i></span> CSS</span>
+                    <span class="pct">75%</span>
+                </div>
+                <div class="bar"><span style="width:75%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fab fa-php"></i></span> PHP</span>
+                    <span class="pct">90%</span>
+                </div>
+                <div class="bar"><span style="width:90%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fas fa-database"></i></span> MySQL</span>
+                    <span class="pct">70%</span>
+                </div>
+                <div class="bar"><span style="width:70%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fab fa-js"></i></span> JavaScript</span>
+                    <span class="pct">75%</span>
+                </div>
+                <div class="bar"><span style="width:75%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fas fa-lightbulb"></i></span> Problem Solving</span>
+                    <span class="pct">90%</span>
+                </div>
+                <div class="bar"><span style="width:90%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fas fa-users"></i></span> Kepemimpinan</span>
+                    <span class="pct">85%</span>
+                </div>
+                <div class="bar"><span style="width:85%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fas fa-file-word"></i></span> Microsoft Word</span>
+                    <span class="pct">97%</span>
+                </div>
+                <div class="bar"><span style="width:97%"></span></div>
+            </div>
+ 
+            <div class="skill-card">
+                <div class="skill-head">
+                    <span class="name"><span class="icn"><i class="fas fa-chart-line"></i></span> PowerPoint</span>
+                    <span class="pct">80%</span>
+                </div>
+                <div class="bar"><span style="width:80%"></span></div>
+            </div>
         </div>
     </div>
 </section>
-
-
+ 
 <!-- PROJECT -->
 <section id="project">
-    <div class="container">
-        <h2>My Projects</h2>
-
-        <div class="projects">
-			<div class="card project-card">
-    <h3>REKOMEDIA</h3>
-
-    <p>
-        Website rekomendasi media (drama, film, atau konten hiburan) yang dibuat untuk membantu pengguna menemukan tontonan berdasarkan kategori tertentu.
-    </p>
-
-    <p><strong>Teknologi:</strong> HTML, CSS, PHP</p>
-
-    <p><strong>Fitur:</strong></p>
-    <ul>
-        <li>Rekomendasi konten berdasarkan kategori</li>
-        <li>Tampilan daftar media</li>
-        <li>Link trailer atau sumber eksternal</li>
-    </ul>
-
-    <p><strong>Status:</strong> Dalam pengembangan</p>
-
-    <a href="https://qtnaiva.github.io/rekomedia-web-nn/" target="_blank"
-       style="display:inline-block; margin-top:10px; padding:8px 15px;
-       background:#333; color:#fff; border-radius:8px; text-decoration:none;">
-       <i class="fab fa-github"></i> View on GitHub
-    </a>
+    <div class="container fade-up">
+        <div class="section-tag">portofolio</div>
+        <h2 class="section-title">My Projects</h2>
+ 
+        <div class="projects-grid stagger">
+            <div class="project-card">
+                <div class="project-head">
+                    <h3><i class="fas fa-clapperboard"></i> REKOMEDIA</h3>
+                    <span class="status-pill progress">In Progress</span>
+                </div>
+                <div class="project-body">
+                    <p>
+                        Website rekomendasi media (drama, film, atau konten hiburan) yang membantu pengguna
+                        menemukan tontonan berdasarkan kategori tertentu.
+                    </p>
+ 
+                    <div class="tech-row">
+                        <span>HTML</span><span>CSS</span><span>PHP</span>
+                    </div>
+ 
+                    <div class="label">Fitur</div>
+                    <ul class="feature-list">
+                        <li>Rekomendasi konten berdasarkan kategori</li>
+                        <li>Tampilan daftar media</li>
+                        <li>Link trailer atau sumber eksternal</li>
+                    </ul>
+ 
+                    <a href="https://qtnaiva.github.io/rekomedia-web-nn/" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+ 
+            <div class="project-card">
+                <div class="project-head">
+                    <h3><i class="fas fa-gamepad"></i> QUIZ GAME</h3>
+                    <span class="status-pill done">Completed</span>
+                </div>
+                <div class="project-body">
+                    <p>
+                        Aplikasi game kuis berbasis web dengan pertanyaan pilihan ganda dan sistem skor otomatis
+                        untuk menguji pengetahuan pengguna.
+                    </p>
+ 
+                    <div class="tech-row">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+ 
+                    <div class="label">Fitur</div>
+                    <ul class="feature-list">
+                        <li>Pertanyaan pilihan ganda</li>
+                        <li>Sistem skor otomatis</li>
+                        <li>Feedback jawaban benar/salah</li>
+                        <li>Timer pada setiap soal</li>
+                        <li>Sistem nyawa (lives)</li>
+                        <li>Sound effect &amp; background music</li>
+                    </ul>
+ 
+                    <a href="https://qtnaiva.github.io/quiz-zone/" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+				</div>
 </div>
+				
+				<div class="project-card">
+    <div class="project-head">
+        <h3><i class="fas fa-shirt"></i> LUXE FASHION STORE</h3>
+        <span class="status-pill done">Completed</span>
+    </div>
 
-			<div class="card project-card">
-    <h3>QUIZ GAME</h3>
+    <div class="project-body">
+        <p>
+            Website e-commerce fashion modern yang memungkinkan pengguna
+            mencari produk, menambahkan barang ke keranjang, menentukan jumlah
+            pembelian, dan melakukan checkout langsung melalui WhatsApp.
+        </p>
 
-    <p>
-        Aplikasi game kuis berbasis web yang berisi pertanyaan pilihan ganda dengan sistem skor otomatis untuk menguji pengetahuan pengguna.
-    </p>
+        <div class="tech-row">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Google Sheets</span>
+            <span>Google Apps Script</span>
+        </div>
 
-    <p><strong>Teknologi:</strong> HTML, CSS, JavaScript</p>
+        <div class="label">Fitur</div>
+        <ul class="feature-list">
+            <li>Pencarian produk secara real-time</li>
+            <li>Keranjang belanja interaktif</li>
+            <li>Pemilihan jumlah produk</li>
+            <li>Checkout otomatis ke WhatsApp</li>
+            <li>Penyimpanan data dengan Google Sheets</li>
+            <li>Desain responsif dan modern</li>
+        </ul>
 
-    <p><strong>Fitur:</strong></p>
-    <ul>
-         <li>Pertanyaan pilihan ganda</li>
-        <li>Sistem skor otomatis</li>
-        <li>Feedback jawaban benar/salah</li>
-        <li>Timer pada setiap soal</li>
-        <li>Sistem nyawa (lives)</li>
-        <li>Sound effect dan background music</li>
-        <li>Tampilan interaktif dan user-friendly</li>
-    </ul>
-
-    <p><strong>Status:</strong> Selesai</p>
-
-    <a href="https://qtnaiva.github.io/quiz-zone/" target="_blank"
-       style="display:inline-block; margin-top:10px; padding:8px 15px;
-       background:#333; color:#fff; border-radius:8px; text-decoration:none;">
-       <i class="fab fa-github"></i> View on GitHub
-    </a>
-	</div>
-			<div class="card project-card">
-    <h3>LUXE FASHION STORE</h3>
-
-    <p>
-        Website e-commerce fashion modern yang memungkinkan pengguna mencari
-        produk, menambahkan barang ke keranjang, menentukan jumlah pembelian,
-        dan melakukan checkout langsung melalui WhatsApp.
-    </p>
-
-    <p><strong>Teknologi:</strong> HTML, CSS, JavaScript, Google Apps Script, Google Sheets</p>
-
-    <p><strong>Fitur:</strong></p>
-    <ul>
-        <li>Katalog produk fashion</li>
-        <li>Pencarian produk real-time</li>
-        <li>Keranjang belanja interaktif</li>
-        <li>Pemilihan jumlah produk</li>
-        <li>Checkout otomatis ke WhatsApp</li>
-        <li>Penyimpanan data menggunakan Google Sheets</li>
-        <li>Desain responsif dan modern</li>
-    </ul>
-
-    <p><strong>Status:</strong> Selesai</p>
-
-    <a href="https://qtnaiva.github.io/luxe-fashion-store/" target="_blank"
-       style="display:inline-block; margin-top:10px; padding:8px 15px;
-       background:#333; color:#fff; border-radius:8px; text-decoration:none;">
-       <i class="fas fa-globe"></i> Live Demo
-    </a>
+        <a href="https://qtnaiva.github.io/luxe-fashion-store/" target="_blank" class="project-link">
+            <i class="fas fa-globe"></i> Live Demo
+        </a>
+    </div>
 </div>
-   </div>
+            </div>
+        </div>
+		
+    </div>
 </section>
-
-
+ 
 <!-- EXPERIENCE -->
 <section id="experience">
-    <div class="container">
-        <h2>Experience</h2>
-
-        <!-- KAMPUS -->
-        <div class="card">
-            <h3>Mahasiswa Teknik Informatika</h3>
-            <p>
-                Aktif menjalani perkuliahan dan fokus dalam pengembangan kemampuan di bidang web development.
-                Mempelajari HTML, CSS, PHP, dan MySQL serta mengerjakan berbagai tugas dan project berbasis web.
-            </p>
+    <div class="container fade-up">
+        <div class="section-tag">riwayat</div>
+        <h2 class="section-title">Experience</h2>
+ 
+        <div class="timeline">
+            <div class="tl-item">
+                <span class="tl-tag">2024 — Sekarang</span>
+                <h3>Mahasiswa Teknik Informatika</h3>
+                <p>
+                    Aktif menjalani perkuliahan dengan fokus pada pengembangan web. Mempelajari HTML, CSS, PHP,
+                    dan MySQL serta mengerjakan berbagai tugas dan project berbasis web.
+                </p>
+            </div>
+ 
+            <div class="tl-item">
+                <span class="tl-tag">2021 / 2022</span>
+                <h3>Wakil Ketua OSIS</h3>
+                <p>
+                    Membantu koordinasi kegiatan sekolah serta mengembangkan kemampuan kepemimpinan dan kerja
+                    sama tim.
+                </p>
+            </div>
+ 
+            <div class="tl-item">
+                <span class="tl-tag">2022 / 2023</span>
+                <h3>Ketua Mading Sekolah</h3>
+                <p>
+                    Memimpin tim dalam pengelolaan majalah dinding sekolah, bertanggung jawab atas penyusunan
+                    konten dan meningkatkan kreativitas tim.
+                </p>
+            </div>
+ 
+            <div class="tl-item">
+                <span class="tl-tag">2023 / 2024</span>
+                <h3>Ketua Rohani Islam (ROHIS)</h3>
+                <p>
+                    Mengelola kegiatan keagamaan serta mengembangkan kemampuan organisasi dan komunikasi.
+                </p>
+            </div>
+ 
+            <div class="tl-item">
+                <span class="tl-tag">Kelas 2 SMA</span>
+                <h3>Prestasi Akademik — Juara Umum</h3>
+                <p>
+                    Meraih Juara Umum sebagai bentuk konsistensi dalam prestasi akademik.
+                </p>
+            </div>
+ 
+            <div class="tl-item">
+                <span class="tl-tag">3 Tahun Berturut-turut</span>
+                <h3>Master of Ceremony (MC)</h3>
+                <p>
+                    Menjadi MC pada berbagai acara sekolah selama SMA, memandu acara dalam Bahasa Indonesia
+                    dan Bahasa Inggris, serta mengembangkan kemampuan public speaking.
+                </p>
+            </div>
         </div>
-
-        <!-- SMA -->
-        <div class="card">
-            <h3>Wakil Ketua OSIS</h3>
-            <p>
-                Menjabat sebagai Wakil Ketua OSIS periode 2021/2022.
-                Bertanggung jawab dalam membantu koordinasi kegiatan sekolah serta mengembangkan kemampuan kepemimpinan dan kerja sama tim.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Ketua Mading Sekolah</h3>
-            <p>
-                Memimpin tim dalam pengelolaan majalah dinding sekolah pada tahun 2022/2023.
-                Bertanggung jawab dalam penyusunan konten dan meningkatkan kreativitas tim.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Ketua Rohani Islam (ROHIS)</h3>
-            <p>
-                Menjabat sebagai Ketua ROHIS periode 2023/2024.
-                Mengelola kegiatan keagamaan serta mengembangkan kemampuan organisasi dan komunikasi.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Prestasi Akademik</h3>
-            <p>
-                Meraih Juara Umum pada kelas 2 SMA sebagai bentuk konsistensi dalam prestasi akademik.
-            </p>
-        </div>
-		<div class="card">
-    <h3>Master of Ceremony (MC) di lingkungan sekolah</h3>
-    <p>
-        Menjadi MC selama 3 tahun berturut-turut pada berbagai acara sekolah saat SMA.
-        Berperan dalam memandu acara serta mengembangkan kemampuan public speaking.
-        Pernah menggunakan Bahasa Indonesia dan Bahasa Inggris dalam beberapa acara.
-    </p>
-</div>
-
-
-</div>
-
     </div>
 </section>
-
+ 
 <!-- CONTACT -->
 <section id="contact">
-    <div class="container contact">
-        <h2>Contact Me</h2>
-
-        <div class="contact-info" style="margin-top:20px; font-size:18px;">
-            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:quratulnayva@gmail.com">quratulnayva@gmail.com</a></p>
-            <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></p>
-            <p><i class="fab fa-instagram"></i> Instagram: <a href="https://instagram.com/qtnaiva" target="_blank">@qtnaiva</a></p>
+    <div class="container fade-up">
+        <div class="contact-box">
+            <div class="section-tag">hubungi</div>
+            <h2>Let's build something <span class="grad-text" style="-webkit-background-clip:text;background-clip:text;color:transparent;background:var(--grad-text);">together</span></h2>
+            <p>Terbuka untuk diskusi project, kolaborasi, atau sekadar say hi. Silakan hubungi melalui salah satu kanal di bawah ini.</p>
+ 
+            <div class="contact-links">
+                <a href="mailto:quratulnayva@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                    <small>quratulnayva@gmail.com</small>
+                </a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="contact-link">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                    <small>+62 838-5497-7078</small>
+                </a>
+                <a href="https://instagram.com/qtnaiva" target="_blank" class="contact-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                    <small>@qtnaiva</small>
+                </a>
+                <a href="https://github.com/qtnaiva" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                    <small>@qtnaiva</small>
+                </a>
+            </div>
         </div>
     </div>
 </section>
-
+ 
 <footer>
-    <p>© 2026 Quratul Naiva</p>
+    <p>© 2026 Quratul Naiva — built with <span class="hl">passion</span> &amp; lots of <span class="hl">coffee</span></p>
 </footer>
-
+ 
+<script>
+// fade-up & stagger on scroll
+const items = document.querySelectorAll('.fade-up, .stagger');
+const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('visible'); }
+    });
+},{threshold: 0.12});
+items.forEach(i=>obs.observe(i));
+ 
+// animate skill bars on view
+const bars = document.querySelectorAll('.bar span');
+const barObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+        if(e.isIntersecting){
+            const span = e.target;
+            const w = span.style.width;
+            span.style.width = '0';
+            requestAnimationFrame(()=>{
+                setTimeout(()=>{ span.style.transition = 'width 1.2s cubic-bezier(.25,.8,.25,1)'; span.style.width = w; }, 100);
+            });
+            barObs.unobserve(span);
+        }
+    });
+},{threshold:0.3});
+bars.forEach(b=>barObs.observe(b));
+ 
+// typed role text cycling effect
+const roles = [
+    "Mahasiswa Teknik Informatika",
+    "Front-End Enthusiast",
+    "PHP & MySQL Developer",
+    "Problem Solver"
+];
+const typedEl = document.getElementById('typed-text');
+let roleIdx = 0, charIdx = 0, deleting = false;
+ 
+function tick(){
+    const current = roles[roleIdx];
+    if(!deleting){
+        charIdx++;
+        typedEl.textContent = current.slice(0, charIdx);
+        if(charIdx === current.length){
+            deleting = true;
+            setTimeout(tick, 1800);
+            return;
+        }
+    } else {
+        charIdx--;
+        typedEl.textContent = current.slice(0, charIdx);
+        if(charIdx === 0){
+            deleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+        }
+    }
+    setTimeout(tick, deleting ? 35 : 55);
+}
+setTimeout(tick, 600);
+</script>
+ 
 </body>
 </html>
